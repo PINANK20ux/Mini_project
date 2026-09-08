@@ -44,3 +44,4 @@ Thumbs.db
 
 # Supabase local environment
 .supabase/local
+/dist
