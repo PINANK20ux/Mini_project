@@ -1,36 +1,34 @@
 export const CATEGORIES = {
   Entertainment: {
     badge:
-      "bg-violet-50 text-violet-700 ring-1 ring-violet-700/10 dark:bg-violet-500/15 dark:text-violet-300 dark:ring-violet-400/20",
-    dot: "bg-violet-500",
-    hex: "#8b5cf6",
+      "bg-[#A67C82]/15 text-[#734A50] ring-1 ring-[#A67C82]/25 dark:bg-[#A67C82]/20 dark:text-[#E0BFC4] dark:ring-[#A67C82]/30",
+    dot: "bg-[#A67C82]",
+    hex: "#A67C82",
   },
   Fitness: {
     badge:
-      "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-700/10 dark:bg-emerald-500/15 dark:text-emerald-300 dark:ring-emerald-400/20",
-    dot: "bg-emerald-500",
-    hex: "#10b981",
+      "bg-[#8B9A6E]/15 text-[#4E5C37] ring-1 ring-[#8B9A6E]/30 dark:bg-[#8B9A6E]/25 dark:text-[#D5E0C2] dark:ring-[#8B9A6E]/40",
+    dot: "bg-[#8B9A6E]",
+    hex: "#8B9A6E",
   },
   Utilities: {
     badge:
-      "bg-sky-50 text-sky-700 ring-1 ring-sky-700/10 dark:bg-sky-500/15 dark:text-sky-300 dark:ring-sky-400/20",
-    dot: "bg-sky-500",
-    hex: "#0ea5e9",
+      "bg-[#6E859A]/15 text-[#3D5265] ring-1 ring-[#6E859A]/30 dark:bg-[#6E859A]/25 dark:text-[#C5D9EB] dark:ring-[#6E859A]/40",
+    dot: "bg-[#6E859A]",
+    hex: "#6E859A",
   },
   Housing: {
     badge:
-      "bg-amber-50 text-amber-800 ring-1 ring-amber-700/10 dark:bg-amber-500/15 dark:text-amber-300 dark:ring-amber-400/20",
-    dot: "bg-amber-500",
-    hex: "#f59e0b",
+      "bg-[#B89758]/15 text-[#6D5322] ring-1 ring-[#B89758]/30 dark:bg-[#B89758]/25 dark:text-[#EBD6A7] dark:ring-[#B89758]/40",
+    dot: "bg-[#B89758]",
+    hex: "#B89758",
   },
   Work: {
     badge:
-      "bg-rose-50 text-rose-700 ring-1 ring-rose-700/10 dark:bg-rose-500/15 dark:text-rose-300 dark:ring-rose-400/20",
-    dot: "bg-rose-500",
-    hex: "#f43f5e",
+      "bg-[#B66D58]/15 text-[#6E3626] ring-1 ring-[#B66D58]/30 dark:bg-[#B66D58]/25 dark:text-[#E8BBB0] dark:ring-[#B66D58]/40",
+    dot: "bg-[#B66D58]",
+    hex: "#B66D58",
   },
 };
 
 export const CATEGORY_KEYS = Object.keys(CATEGORIES);
-
-

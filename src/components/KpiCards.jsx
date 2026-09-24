@@ -1,28 +1,29 @@
 import React from "react";
-import { Wallet, CalendarClock, Layers } from "lucide-react";
+import { Wallet, CalendarClock, Layers, Sparkles } from "lucide-react";
 import { formatCurrency } from "../utils/format.js";
 
-function KpiCard({ icon: Icon, label, value, accent, sub, iconBg, iconColor, hoverColor }) {
+function KpiCard({ icon: Icon, label, value, sub, accentColor, iconBg, iconColor }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-stone-200/70 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-stone-300 hover:shadow-lg dark:border-stone-800 dark:bg-stone-900 dark:hover:border-stone-700">
+    <div className="group relative overflow-hidden rounded-2xl border border-[#DCD5C9] bg-[#EAE2D6] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#8B9A6E]/50 hover:shadow-md dark:border-[#2E2D27] dark:bg-[#24231F] dark:hover:border-[#8B9A6E]/50">
+      {/* Accent Indicator Bar */}
       <span
-        className={`absolute left-0 top-0 h-full w-1.5 transition-all duration-300 group-hover:w-2.5 ${accent}`}
+        className={`absolute left-0 top-0 h-full w-1.5 transition-all duration-300 group-hover:w-2 ${accentColor}`}
       />
       <div className="flex items-center justify-between">
-        <p className="text-xs font-semibold uppercase tracking-wider text-stone-500 dark:text-stone-400">
+        <p className="text-xs font-bold uppercase tracking-wider text-[#4D5047] dark:text-[#A6A89F]">
           {label}
         </p>
         <div
-          className={`flex h-8 w-8 items-center justify-center rounded-xl ${iconBg} transition-all duration-300 group-hover:scale-110 group-hover:rotate-6`}
+          className={`flex h-8 w-8 items-center justify-center rounded-xl ${iconBg} transition-transform duration-300 group-hover:scale-110`}
         >
           <Icon className={`h-4 w-4 ${iconColor}`} />
         </div>
       </div>
-      <p className={`mt-3 font-mono text-2xl font-bold tracking-tight tabular-nums text-stone-900 transition-colors ${hoverColor} dark:text-stone-50`}>
+      <p className="mt-3 font-mono text-2xl font-extrabold tracking-tight tabular-nums text-[#1F211C] dark:text-[#F7F2EB]">
         {value}
       </p>
       {sub && (
-        <p className="mt-1.5 text-xs text-stone-500 transition-colors dark:text-stone-400">
+        <p className="mt-1.5 text-xs text-[#70736A] dark:text-[#8D9087]">
           {sub}
         </p>
       )}
@@ -37,52 +38,51 @@ export default function KpiCards({
   upcomingCount,
 }) {
   return (
-    <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {/* Monthly Spend */}
       <KpiCard
         icon={Wallet}
-        label="Total monthly spend"
+        label="Monthly Spend"
         value={formatCurrency(totalMonthly)}
-        accent="bg-teal-500"
-        iconBg="bg-teal-50 dark:bg-teal-950/50"
-        iconColor="text-teal-600 dark:text-teal-400"
-        hoverColor="group-hover:text-teal-600 dark:group-hover:text-teal-400"
+        accentColor="bg-[#8B9A6E]"
+        iconBg="bg-[#8B9A6E]/20"
+        iconColor="text-[#4E5C37] dark:text-[#D5E0C2]"
         sub="Across all active subscriptions"
       />
+
+      {/* Annual Projection */}
       <KpiCard
         icon={CalendarClock}
-        label="Estimated annual spend"
+        label="Annual Projection"
         value={formatCurrency(totalAnnual)}
-        accent="bg-indigo-500"
-        iconBg="bg-indigo-50 dark:bg-indigo-950/50"
-        iconColor="text-indigo-600 dark:text-indigo-400"
-        hoverColor="group-hover:text-indigo-600 dark:group-hover:text-indigo-400"
-        sub="Projected over 12 months"
+        accentColor="bg-[#6E859A]"
+        iconBg="bg-[#6E859A]/20"
+        iconColor="text-[#3D5265] dark:text-[#C5D9EB]"
+        sub="Projected 12-month commitment"
       />
+
+      {/* Active Subscriptions Count */}
       <KpiCard
         icon={Layers}
-        label="Active subscriptions"
+        label="Active Subscriptions"
         value={activeCount}
-        accent="bg-amber-500"
-        iconBg="bg-amber-50 dark:bg-amber-950/50"
-        iconColor="text-amber-600 dark:text-amber-400"
-        hoverColor="group-hover:text-amber-600 dark:group-hover:text-amber-400"
+        accentColor="bg-[#B89758]"
+        iconBg="bg-[#B89758]/20"
+        iconColor="text-[#6D5322] dark:text-[#EBD6A7]"
         sub={
           upcomingCount > 0 ? (
-            <span className="inline-flex items-center gap-1 font-medium text-amber-600 dark:text-amber-400">
+            <span className="inline-flex items-center gap-1 font-semibold text-[#8B9A6E] dark:text-[#A4B585]">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8B9A6E] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#8B9A6E]"></span>
               </span>
               {upcomingCount} renewing soon
             </span>
           ) : (
-            "All renewals on track"
+            "All renewals on schedule"
           )
         }
       />
     </div>
   );
 }
-
-
-

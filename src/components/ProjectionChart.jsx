@@ -13,11 +13,11 @@ import { formatCurrency } from "../utils/format.js";
 const CustomBarTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="animate-scale-in rounded-xl border border-stone-200/80 bg-white/95 px-3 py-2 shadow-lg backdrop-blur-sm dark:border-stone-800 dark:bg-stone-900/95">
-        <p className="text-xs font-medium text-stone-500 dark:text-stone-400">
+      <div className="animate-scale-in rounded-xl border border-[#DCD5C9] bg-[#F7F2EB] px-3.5 py-2 shadow-lg backdrop-blur-sm dark:border-[#2E2D27] dark:bg-[#181916]">
+        <p className="text-xs font-semibold text-[#70736A] dark:text-[#8D9087]">
           {label} Projection
         </p>
-        <p className="mt-0.5 font-mono text-sm font-bold text-teal-600 dark:text-teal-400">
+        <p className="mt-0.5 font-mono text-sm font-extrabold text-[#4E5C37] dark:text-[#D5E0C2]">
           {formatCurrency(payload[0].value)}
         </p>
       </div>
@@ -28,14 +28,14 @@ const CustomBarTooltip = ({ active, payload, label }) => {
 
 export default function ProjectionChart({ projectionData }) {
   return (
-    <div className="group rounded-2xl border border-stone-200/70 bg-white p-5 shadow-sm transition-all duration-300 hover:border-stone-300 hover:shadow-lg dark:border-stone-800 dark:bg-stone-900 dark:hover:border-stone-700">
+    <div className="group rounded-2xl border border-[#DCD5C9] bg-[#EAE2D6] p-5 shadow-sm transition-all duration-300 hover:border-[#8B9A6E]/50 hover:shadow-md dark:border-[#2E2D27] dark:bg-[#24231F] dark:hover:border-[#8B9A6E]/50">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-sm font-bold tracking-tight text-stone-900 dark:text-stone-100">
-            Projected spend, next 6 months
+          <h3 className="text-sm font-bold tracking-tight text-[#1F211C] dark:text-[#F7F2EB]">
+            Projected Spend, Next 6 Months
           </h3>
-          <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">
-            Includes monthly bills and upcoming annual renewals
+          <p className="mt-0.5 text-xs text-[#70736A] dark:text-[#8D9087]">
+            Includes monthly charges and upcoming annual renewals
           </p>
         </div>
       </div>
@@ -44,39 +44,40 @@ export default function ProjectionChart({ projectionData }) {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={projectionData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <defs>
-              <linearGradient id="normalBarGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#0d9488" stopOpacity={0.9} />
-                <stop offset="100%" stopColor="#14b8a6" stopOpacity={0.4} />
+              <linearGradient id="sageBarGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#8B9A6E" stopOpacity={0.95} />
+                <stop offset="100%" stopColor="#8B9A6E" stopOpacity={0.45} />
               </linearGradient>
             </defs>
             <CartesianGrid
               strokeDasharray="3 3"
               vertical={false}
-              className="stroke-stone-100 dark:stroke-stone-800/80"
+              stroke="#DCD5C9"
+              className="dark:opacity-20"
             />
             <XAxis
               dataKey="month"
               tick={{ fontSize: 12 }}
               tickLine={false}
               axisLine={false}
-              stroke="currentColor"
-              className="text-stone-500 dark:text-stone-400 font-medium"
+              stroke="#70736A"
+              className="font-semibold"
             />
             <YAxis
               tick={{ fontSize: 11 }}
               tickLine={false}
               axisLine={false}
-              stroke="currentColor"
-              className="text-stone-400 dark:text-stone-500 font-mono"
+              stroke="#70736A"
+              className="font-mono"
               tickFormatter={(v) => `₹${v}`}
             />
             <Tooltip
               content={<CustomBarTooltip />}
-              cursor={{ fill: "rgba(13, 148, 136, 0.06)", radius: 6 }}
+              cursor={{ fill: "rgba(139, 154, 110, 0.08)", radius: 6 }}
             />
             <Bar
               dataKey="amount"
-              fill="url(#normalBarGradient)"
+              fill="url(#sageBarGradient)"
               radius={[6, 6, 2, 2]}
               isAnimationActive={true}
               animationDuration={1000}
@@ -88,6 +89,3 @@ export default function ProjectionChart({ projectionData }) {
     </div>
   );
 }
-
-
-

@@ -1,5 +1,5 @@
 import React from "react";
-import { AlertTriangle, Clock } from "lucide-react";
+import { AlertCircle, Clock, Bell } from "lucide-react";
 import { daysUntil } from "../utils/date.js";
 import { formatCurrency } from "../utils/format.js";
 
@@ -7,35 +7,34 @@ export default function UpcomingBanner({ upcoming }) {
   if (upcoming.length === 0) return null;
 
   return (
-    <div className="animate-slide-down mb-6 flex items-start gap-3.5 rounded-2xl border border-amber-200/90 bg-gradient-to-r from-amber-50/90 via-orange-50/60 to-amber-50/40 p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:border-amber-300 dark:border-amber-500/25 dark:bg-gradient-to-r dark:from-amber-500/10 dark:via-orange-500/10 dark:to-amber-500/5 dark:hover:border-amber-500/40">
-      <div className="relative mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-amber-100 dark:bg-amber-900/50">
-        <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400 animate-pulse-glow" />
+    <div className="animate-slide-down mb-6 flex items-start gap-3.5 rounded-2xl border border-[#8B9A6E]/40 bg-[#EAE2D6] p-4 shadow-sm transition-all duration-300 dark:border-[#8B9A6E]/30 dark:bg-[#24231F]">
+      <div className="relative mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#8B9A6E]/20 text-[#4E5C37] dark:text-[#D5E0C2]">
+        <Bell className="h-4 w-4 animate-pulse-glow" />
       </div>
       <div className="flex-1 text-sm">
-        <div className="flex items-center gap-2">
-          <p className="font-semibold text-amber-950 dark:text-amber-200">
-            {upcoming.length} bill{upcoming.length > 1 ? "s" : ""} renewing within
-            7 days
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="font-bold text-[#1F211C] dark:text-[#F7F2EB]">
+            {upcoming.length} bill{upcoming.length > 1 ? "s" : ""} due within 7 days
           </p>
-          <span className="flex items-center gap-1 rounded-full bg-amber-200/70 px-2 py-0.5 text-[11px] font-semibold text-amber-900 dark:bg-amber-500/25 dark:text-amber-300">
+          <span className="flex items-center gap-1 rounded-full bg-[#8B9A6E]/20 px-2 py-0.5 text-[11px] font-bold text-[#4E5C37] dark:bg-[#8B9A6E]/30 dark:text-[#D5E0C2]">
             <Clock className="h-3 w-3" />
-            Action recommended
+            <span>Action recommended</span>
           </span>
         </div>
-        <div className="mt-2 flex flex-wrap gap-2">
+        <div className="mt-2.5 flex flex-wrap gap-2">
           {upcoming.map((s) => {
             const d = daysUntil(s.nextBilling);
             return (
               <span
                 key={s.id}
-                className="group/chip inline-flex items-center gap-1.5 rounded-xl border border-amber-200 bg-white/90 px-3 py-1 text-xs text-amber-950 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-white hover:shadow dark:border-amber-500/30 dark:bg-stone-900/90 dark:text-amber-200 dark:hover:border-amber-400 dark:hover:bg-stone-900"
+                className="group/chip inline-flex items-center gap-1.5 rounded-xl border border-[#DCD5C9] bg-[#F7F2EB] px-3 py-1 text-xs font-semibold text-[#1F211C] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#8B9A6E] dark:border-[#2E2D27] dark:bg-[#181916] dark:text-[#F7F2EB]"
               >
-                <span className="font-semibold">{s.name}</span>
-                <span className="text-amber-500 dark:text-amber-400">•</span>
-                <span className="font-medium text-amber-800 dark:text-amber-300">
+                <span>{s.name}</span>
+                <span className="text-[#8B9A6E]">•</span>
+                <span className="font-medium text-[#4E5C37] dark:text-[#D5E0C2]">
                   {d === 0 ? "Today" : d === 1 ? "Tomorrow" : `In ${d} days`}
                 </span>
-                <span className="font-mono text-stone-500 dark:text-stone-400">
+                <span className="font-mono text-[#70736A] dark:text-[#8D9087]">
                   ({formatCurrency(s.cost)})
                 </span>
               </span>
@@ -46,5 +45,3 @@ export default function UpcomingBanner({ upcoming }) {
     </div>
   );
 }
-
-
