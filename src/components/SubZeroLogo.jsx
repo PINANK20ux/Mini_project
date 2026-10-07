@@ -8,7 +8,49 @@ export default function SubZeroLogo({ className = "h-10 w-10" }) {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* Dark Navy Background within Rotated Rounded Diamond */}
+      <defs>
+        {/* Diamond Outer Glass Gradient */}
+        <linearGradient id="diamondGlassBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#0284c7" stopOpacity="0.85" />
+          <stop offset="50%" stopColor="#0f172a" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.9" />
+        </linearGradient>
+
+        {/* Specular Rim Stroke */}
+        <linearGradient id="diamondRimStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+          <stop offset="40%" stopColor="#38bdf8" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#818cf8" stopOpacity="0.7" />
+        </linearGradient>
+
+        {/* Monogram Ice Flow Gradient */}
+        <linearGradient id="monogramFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="35%" stopColor="#bae6fd" />
+          <stop offset="70%" stopColor="#38bdf8" />
+          <stop offset="100%" stopColor="#818cf8" />
+        </linearGradient>
+
+        <filter id="glassGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+
+      {/* Outer Glow Halo */}
+      <rect
+        x="50"
+        y="8"
+        width="58"
+        height="58"
+        rx="14"
+        transform="rotate(45 50 8)"
+        fill="#38bdf8"
+        opacity="0.25"
+        filter="url(#glassGlow)"
+      />
+
+      {/* Dark Navy / Indigo Crystal Base within Rotated Rounded Diamond */}
       <rect
         x="50"
         y="8"
@@ -16,14 +58,14 @@ export default function SubZeroLogo({ className = "h-10 w-10" }) {
         height="58"
         rx="13"
         transform="rotate(45 50 8)"
-        fill="#070c1e"
-        stroke="#4da2ff"
-        strokeWidth="5"
+        fill="url(#diamondGlassBg)"
+        stroke="url(#diamondRimStroke)"
+        strokeWidth="4"
         strokeLinejoin="round"
       />
 
-      {/* Stylized 'S' Monogram in Light Blue */}
-      <g fill="#4da2ff">
+      {/* Stylized 'S' Monogram in Luminous Ice Cyan */}
+      <g fill="url(#monogramFlow)">
         {/* Top Arm with Round Terminal Knob and Wing */}
         <path
           d="M 52 23

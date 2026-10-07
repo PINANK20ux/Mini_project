@@ -43,35 +43,35 @@ export default function SubscriptionModal({ initial, onClose, onSave }) {
   };
 
   const inputCls =
-    "mt-1.5 w-full rounded-xl border border-[#DCD5C9] bg-[#F7F2EB] px-3.5 py-2.5 text-sm text-[#1F211C] outline-none transition-all duration-200 focus:border-[#8B9A6E] focus:bg-white focus:ring-4 focus:ring-[#8B9A6E]/15 dark:border-[#2E2D27] dark:bg-[#181916] dark:text-[#F7F2EB] dark:focus:border-[#8B9A6E]";
-  const errCls = "mt-1 animate-slide-down text-xs font-medium text-rose-600 dark:text-rose-400";
+    "glass-input mt-1.5 w-full rounded-xl px-3.5 py-2.5 text-sm";
+  const errCls = "mt-1 animate-slide-down text-xs font-medium text-rose-500";
 
   return (
     <div
-      className="animate-fade-in fixed inset-0 z-50 flex items-center justify-center bg-[#1F211C]/60 p-4 backdrop-blur-sm"
+      className="animate-fade-in fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-md"
       onClick={onClose}
     >
       <div
-        className="animate-scale-in w-full max-w-md rounded-3xl border border-[#DCD5C9] bg-[#EAE2D6] p-6 shadow-2xl transition-all dark:border-[#2E2D27] dark:bg-[#24231F]"
+        className="glass-panel glass-specular animate-scale-in w-full max-w-md rounded-3xl p-6 shadow-2xl transition-all"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-5 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#8B9A6E]/20 text-[#4E5C37] dark:text-[#D5E0C2]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-500/15 border border-cyan-500/25 text-cyan-600 dark:text-cyan-300 backdrop-blur-md">
               <Sparkles className="h-4 w-4" />
             </div>
             <div>
-              <h2 className="text-lg font-bold tracking-tight text-[#1F211C] dark:text-[#F7F2EB]">
+              <h2 className="font-display text-lg font-bold tracking-tight text-slate-900 dark:text-white">
                 {isEditing ? "Edit subscription" : "Add subscription"}
               </h2>
-              <p className="text-xs text-[#70736A] dark:text-[#8D9087]">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 {isEditing ? "Update your recurring expense" : "Track a new recurring bill or trial"}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="rounded-xl p-2 text-[#70736A] transition-all hover:bg-[#DCD5C9] hover:text-[#1F211C] active:scale-90 dark:hover:bg-[#2E2D27] dark:hover:text-[#F7F2EB]"
+            className="glass-button-secondary rounded-xl p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
             aria-label="Close"
           >
             <X className="h-4 w-4" />
@@ -80,7 +80,7 @@ export default function SubscriptionModal({ initial, onClose, onSave }) {
 
         <form onSubmit={submit} className="space-y-4">
           <div>
-            <label className="text-xs font-bold text-[#1F211C] dark:text-[#F7F2EB]">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-200">
               Subscription Name
             </label>
             <input
@@ -95,7 +95,7 @@ export default function SubscriptionModal({ initial, onClose, onSave }) {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs font-bold text-[#1F211C] dark:text-[#F7F2EB]">
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-200">
                 Cost (₹ INR)
               </label>
               <input
@@ -110,7 +110,7 @@ export default function SubscriptionModal({ initial, onClose, onSave }) {
               {errors.cost && <p className={errCls}>{errors.cost}</p>}
             </div>
             <div>
-              <label className="text-xs font-bold text-[#1F211C] dark:text-[#F7F2EB]">
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-200">
                 Billing cycle
               </label>
               <select
@@ -126,7 +126,7 @@ export default function SubscriptionModal({ initial, onClose, onSave }) {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs font-bold text-[#1F211C] dark:text-[#F7F2EB]">
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-200">
                 Category
               </label>
               <select
@@ -142,7 +142,7 @@ export default function SubscriptionModal({ initial, onClose, onSave }) {
               </select>
             </div>
             <div>
-              <label className="text-xs font-bold text-[#1F211C] dark:text-[#F7F2EB]">
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-200">
                 Next renewal date
               </label>
               <input
@@ -159,13 +159,13 @@ export default function SubscriptionModal({ initial, onClose, onSave }) {
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl px-4 py-2.5 text-sm font-semibold text-[#4D5047] transition-all hover:bg-[#DCD5C9] active:scale-95 dark:text-[#A6A89F] dark:hover:bg-[#2E2D27]"
+              className="glass-button-secondary px-4 py-2.5 text-sm font-semibold"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex items-center gap-2 rounded-xl bg-[#8B9A6E] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-[#78875C] active:scale-95"
+              className="glass-button-primary flex items-center gap-2 px-5 py-2.5 text-sm font-bold"
             >
               <CheckCircle2 className="h-4 w-4" />
               <span>{isEditing ? "Save changes" : "Add subscription"}</span>

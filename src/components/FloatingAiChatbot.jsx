@@ -20,7 +20,7 @@ const INITIAL_MESSAGES = [
     id: "welcome",
     role: "assistant",
     timestamp: new Date(),
-    content: `🌿 **Hello! I'm your SubZero AI Advisor.**
+    content: `❄️ **Hello! I'm your SubZero Glass AI Advisor.**
 
 I'm linked directly to your active bills and salary budget. Ask me how to trim recurring expenses, query upcoming renewals, or check if your spending matches your income!`,
   },
@@ -251,13 +251,13 @@ export default function FloatingAiChatbot({
             setIsOpen(true);
             setIsMinimized(false);
           }}
-          className="group relative flex items-center gap-2.5 rounded-full bg-[#8B9A6E] px-4 py-3 text-sm font-bold text-white shadow-lg shadow-[#8B9A6E]/30 transition-all duration-300 hover:scale-105 hover:bg-[#78875C] hover:shadow-xl active:scale-95"
+          className="glass-button-primary group relative flex items-center gap-2.5 rounded-full px-4 py-3 text-sm shadow-xl shadow-cyan-500/25 transition-all duration-300 hover:scale-105 active:scale-95"
           aria-label="Open SubZero AI Advisor"
         >
           <div className="relative flex items-center justify-center">
             <Sparkles className="h-4 w-4" />
             <span className="absolute -top-1 -right-1 flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-300 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
             </span>
           </div>
@@ -265,29 +265,29 @@ export default function FloatingAiChatbot({
         </button>
       )}
 
-      {/* Slide-out / Pop-up Chat Window */}
+      {/* Slide-out / Pop-up Glass Chat Window */}
       {isOpen && (
         <div
-          className={`animate-scale-in flex flex-col overflow-hidden rounded-3xl border border-[#DCD5C9] bg-[#EAE2D6] shadow-2xl backdrop-blur-xl transition-all duration-300 dark:border-[#2E2D27] dark:bg-[#24231F] ${
+          className={`glass-panel glass-specular animate-scale-in flex flex-col rounded-3xl shadow-2xl transition-all duration-300 ${
             isMinimized
               ? "h-14 w-80 shadow-lg"
               : "h-[530px] max-h-[85vh] w-[92vw] sm:w-[400px]"
           }`}
         >
           {/* Header Bar */}
-          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#DCD5C9] bg-[#E2D9CC]/80 px-4 dark:border-[#2E2D27] dark:bg-[#1E1D19]">
+          <div className="flex h-14 shrink-0 items-center justify-between border-b border-white/60 dark:border-white/10 bg-white/50 dark:bg-white/[0.04] backdrop-blur-md px-4">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#8B9A6E] text-white shadow-sm">
+              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20">
                 <Sparkles className="h-4 w-4" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h3 className="text-xs font-bold text-[#1F211C] dark:text-[#F7F2EB]">
+                  <h3 className="text-xs font-bold text-slate-900 dark:text-white">
                     SubZero AI Advisor
                   </h3>
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#8B9A6E]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 shadow-[0_0_6px_#06b6d4]" />
                 </div>
-                <p className="text-[10px] font-medium text-[#70736A] dark:text-[#8D9087]">
+                <p className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
                   Salary Context: {formatCurrency(salary)}/mo
                 </p>
               </div>
@@ -296,14 +296,14 @@ export default function FloatingAiChatbot({
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setIsMinimized(!isMinimized)}
-                className="rounded-lg p-1.5 text-[#70736A] hover:bg-[#DCD5C9] hover:text-[#1F211C] dark:hover:bg-[#2E2D27] dark:hover:text-[#F7F2EB]"
+                className="rounded-lg p-1.5 text-slate-400 hover:bg-white/60 hover:text-slate-800 dark:hover:bg-white/10 dark:hover:text-white transition-colors"
                 title={isMinimized ? "Expand chat" : "Minimize chat"}
               >
                 {isMinimized ? <Maximize2 className="h-3.5 w-3.5" /> : <Minus className="h-3.5 w-3.5" />}
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="rounded-lg p-1.5 text-[#70736A] hover:bg-[#DCD5C9] hover:text-[#1F211C] dark:hover:bg-[#2E2D27] dark:hover:text-[#F7F2EB]"
+                className="rounded-lg p-1.5 text-slate-400 hover:bg-white/60 hover:text-slate-800 dark:hover:bg-white/10 dark:hover:text-white transition-colors"
                 title="Close chat"
               >
                 <X className="h-3.5 w-3.5" />
@@ -315,12 +315,12 @@ export default function FloatingAiChatbot({
           {!isMinimized && (
             <>
               {/* Quick Prompt Chips */}
-              <div className="flex gap-1.5 overflow-x-auto border-b border-[#DCD5C9] bg-[#F7F2EB] p-2 scrollbar-none dark:border-[#2E2D27] dark:bg-[#181916]">
+              <div className="flex gap-1.5 overflow-x-auto border-b border-white/60 dark:border-white/10 bg-white/40 dark:bg-white/[0.02] p-2 scrollbar-none backdrop-blur-sm">
                 {PROMPT_CHIPS.map((chip, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSend(chip)}
-                    className="shrink-0 rounded-full border border-[#DCD5C9] bg-[#EAE2D6] px-2.5 py-1 text-[11px] font-semibold text-[#1F211C] shadow-sm transition-all hover:border-[#8B9A6E] hover:bg-white active:scale-95 dark:border-[#2E2D27] dark:bg-[#24231F] dark:text-[#F7F2EB] dark:hover:border-[#8B9A6E]"
+                    className="shrink-0 rounded-full border border-white/60 dark:border-white/10 bg-white/60 dark:bg-white/[0.06] backdrop-blur-md px-2.5 py-1 text-[11px] font-semibold text-slate-700 dark:text-slate-200 shadow-sm transition-all hover:border-cyan-400 hover:bg-white dark:hover:bg-white/10 active:scale-95"
                   >
                     {chip}
                   </button>
@@ -328,7 +328,7 @@ export default function FloatingAiChatbot({
               </div>
 
               {/* Messages Scroll Area */}
-              <div className="flex-1 overflow-y-auto p-3.5 space-y-3 text-xs leading-relaxed scrollbar-thin bg-[#F7F2EB] dark:bg-[#181916]">
+              <div className="flex-1 overflow-y-auto p-3.5 space-y-3 text-xs leading-relaxed scrollbar-thin bg-white/20 dark:bg-slate-950/30 backdrop-blur-sm">
                 {messages.map((m) => {
                   const isUser = m.role === "user";
                   return (
@@ -339,7 +339,7 @@ export default function FloatingAiChatbot({
                       }`}
                     >
                       {!isUser && (
-                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-[#8B9A6E]/20 text-[#4E5C37] dark:text-[#D5E0C2]">
+                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-cyan-500/15 border border-cyan-500/25 text-cyan-600 dark:text-cyan-300 backdrop-blur-md">
                           <Bot className="h-3.5 w-3.5" />
                         </div>
                       )}
@@ -347,15 +347,15 @@ export default function FloatingAiChatbot({
                       <div
                         className={`group relative max-w-[85%] rounded-2xl p-3 shadow-sm ${
                           isUser
-                            ? "bg-[#8B9A6E] text-white rounded-br-none"
-                            : "border border-[#DCD5C9] bg-[#EAE2D6] text-[#1F211C] rounded-bl-none dark:border-[#2E2D27] dark:bg-[#24231F] dark:text-[#F7F2EB]"
+                            ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-br-none shadow-md shadow-cyan-500/20"
+                            : "glass-card border border-white/60 dark:border-white/10 text-slate-800 dark:text-slate-100 rounded-bl-none"
                         }`}
                       >
                         <div className="whitespace-pre-wrap space-y-1.5">
                           {m.content.split("\n\n").map((para, pIdx) => {
                             if (para.startsWith("### ")) {
                               return (
-                                <p key={pIdx} className="font-bold text-[#1F211C] dark:text-[#F7F2EB] pt-0.5">
+                                <p key={pIdx} className="font-bold text-slate-900 dark:text-white pt-0.5">
                                   {para.replace("### ", "")}
                                 </p>
                               );
@@ -365,15 +365,15 @@ export default function FloatingAiChatbot({
                         </div>
 
                         {!isUser && (
-                          <div className="mt-2 flex items-center justify-between border-t border-[#DCD5C9]/60 pt-1 text-[10px] text-[#70736A] dark:border-[#2E2D27]/60 dark:text-[#8D9087]">
+                          <div className="mt-2 flex items-center justify-between border-t border-white/40 dark:border-white/10 pt-1 text-[10px] text-slate-400 dark:text-slate-500">
                             <span>SubZero Intelligence</span>
                             <button
                               onClick={() => handleCopy(m.id, m.content)}
-                              className="inline-flex items-center gap-0.5 rounded px-1 text-[#70736A] hover:text-[#1F211C] dark:hover:text-[#F7F2EB]"
+                              className="inline-flex items-center gap-0.5 rounded px-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                               title="Copy text"
                             >
                               {copiedId === m.id ? (
-                                <Check className="h-3 w-3 text-[#8B9A6E]" />
+                                <Check className="h-3 w-3 text-cyan-500" />
                               ) : (
                                 <Copy className="h-3 w-3" />
                               )}
@@ -383,7 +383,7 @@ export default function FloatingAiChatbot({
                       </div>
 
                       {isUser && (
-                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-[#DCD5C9] text-[#1F211C] dark:bg-[#2E2D27] dark:text-[#F7F2EB]">
+                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-white/60 dark:bg-white/10 border border-white/50 text-slate-700 dark:text-slate-200 backdrop-blur-md">
                           <User className="h-3.5 w-3.5" />
                         </div>
                       )}
@@ -394,13 +394,13 @@ export default function FloatingAiChatbot({
                 {/* Typing animation */}
                 {isTyping && (
                   <div className="flex items-center gap-2 animate-fade-in">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#8B9A6E]/20 text-[#4E5C37] dark:text-[#D5E0C2]">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-cyan-500/15 border border-cyan-500/25 text-cyan-600 dark:text-cyan-300">
                       <Bot className="h-3.5 w-3.5" />
                     </div>
-                    <div className="flex items-center gap-1 rounded-2xl border border-[#DCD5C9] bg-[#EAE2D6] px-3 py-2 dark:border-[#2E2D27] dark:bg-[#24231F]">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#8B9A6E] animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#8B9A6E] animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#8B9A6E] animate-bounce" style={{ animationDelay: "300ms" }} />
+                    <div className="glass-card flex items-center gap-1 rounded-2xl px-3 py-2 border border-white/60 dark:border-white/10">
+                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-bounce" style={{ animationDelay: "300ms" }} />
                     </div>
                   </div>
                 )}
@@ -409,7 +409,7 @@ export default function FloatingAiChatbot({
               </div>
 
               {/* Input Form */}
-              <div className="border-t border-[#DCD5C9] p-2.5 bg-[#EAE2D6] dark:border-[#2E2D27] dark:bg-[#24231F]">
+              <div className="border-t border-white/60 dark:border-white/10 p-2.5 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md">
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
@@ -424,12 +424,12 @@ export default function FloatingAiChatbot({
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     disabled={isTyping}
-                    className="flex-1 rounded-xl border border-[#DCD5C9] bg-[#F7F2EB] px-3 py-2 text-xs text-[#1F211C] outline-none transition-all placeholder:text-[#70736A] focus:border-[#8B9A6E] focus:bg-white focus:ring-2 focus:ring-[#8B9A6E]/20 dark:border-[#2E2D27] dark:bg-[#181916] dark:text-[#F7F2EB] dark:placeholder:text-[#70736A]"
+                    className="glass-input flex-1 rounded-xl px-3 py-2 text-xs"
                   />
                   <button
                     type="submit"
                     disabled={!input.trim() || isTyping}
-                    className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#8B9A6E] text-white shadow transition-all hover:bg-[#78875C] disabled:opacity-40"
+                    className="glass-button-primary flex h-8 w-8 items-center justify-center rounded-xl disabled:opacity-40"
                     aria-label="Send"
                   >
                     <Send className="h-3.5 w-3.5" />

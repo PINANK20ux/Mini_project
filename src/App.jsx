@@ -154,12 +154,13 @@ export default function App() {
   if (authLoading || !loaded) {
     return (
       <div className={dark ? "dark" : ""}>
-        <div className="flex min-h-screen items-center justify-center bg-[#F7F2EB] dark:bg-[#181916]">
-          <div className="flex flex-col items-center gap-3">
-            <SubZeroLogo className="h-12 w-12 animate-float" />
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#70736A] dark:text-[#8D9087]">
-              <span className="h-3 w-3 animate-spin rounded-full border-2 border-[#8B9A6E] border-t-transparent"></span>
-              <span>Opening SubZero...</span>
+        <div className="flex min-h-screen items-center justify-center bg-slate-100 dark:bg-[#070A12] relative overflow-hidden">
+          <div className="absolute h-80 w-80 rounded-full bg-cyan-500/20 blur-3xl animate-pulse-glow" />
+          <div className="glass-panel glass-specular flex flex-col items-center gap-4 rounded-3xl p-8 z-10">
+            <SubZeroLogo className="h-14 w-14 animate-float" />
+            <div className="flex items-center gap-2.5 text-xs font-semibold text-slate-600 dark:text-slate-300">
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-cyan-500 border-t-transparent"></span>
+              <span>Opening SubZero Glass Ledger...</span>
             </div>
           </div>
         </div>
@@ -171,7 +172,7 @@ export default function App() {
   if (!user && !guestMode) {
     return (
       <div className={dark ? "dark" : ""}>
-        <div className="min-h-screen bg-[#F7F2EB] text-[#1F211C] transition-colors duration-300 dark:bg-[#181916] dark:text-[#F7F2EB]">
+        <div className="min-h-screen bg-slate-50 text-slate-800 transition-colors duration-300 dark:bg-[#070A12] dark:text-slate-100">
           <AuthPage
             isLandingPage={true}
             onContinueAsGuest={() => setGuestMode(true)}
@@ -181,17 +182,19 @@ export default function App() {
     );
   }
 
-  // 3. Continuous Single-Page Scrolling Layout in Earthy Minimal Palette
+  // 3. Continuous Single-Page Scrolling Layout in Sleek Glass Theme
   return (
     <div className={dark ? "dark" : ""}>
-      <div className="relative min-h-screen bg-[#F7F2EB] font-sans text-[#1F211C] transition-colors duration-300 dark:bg-[#181916] dark:text-[#F7F2EB] selection:bg-[#8B9A6E]/25 selection:text-[#1F211C] dark:selection:text-[#F7F2EB] overflow-x-hidden">
-        {/* Soft Ambient Warm Glows */}
-        <div className="pointer-events-none fixed inset-0 overflow-hidden opacity-25 dark:opacity-10 z-0">
-          <div className="absolute -top-40 left-1/4 h-96 w-96 rounded-full bg-[#8B9A6E]/30 blur-3xl filter" />
-          <div className="absolute top-1/3 -right-20 h-96 w-96 rounded-full bg-[#EAE2D6]/40 blur-3xl filter" />
+      <div className="relative min-h-screen bg-slate-50 font-sans text-slate-800 transition-colors duration-300 dark:bg-[#070A12] dark:text-slate-100 selection:bg-cyan-500/25 selection:text-cyan-900 dark:selection:text-cyan-200 overflow-x-hidden">
+        {/* Luminous Animated Ambient Mesh Orbs */}
+        <div className="pointer-events-none fixed inset-0 overflow-hidden z-0">
+          <div className="absolute -top-32 -left-20 h-[520px] w-[520px] rounded-full bg-gradient-to-br from-cyan-400/25 to-blue-500/20 dark:from-cyan-500/15 dark:to-blue-600/15 blur-[120px] filter animate-orb-1" />
+          <div className="absolute top-1/4 -right-32 h-[560px] w-[560px] rounded-full bg-gradient-to-tr from-purple-500/20 to-pink-500/15 dark:from-purple-600/15 dark:to-indigo-600/15 blur-[130px] filter animate-orb-2" />
+          <div className="absolute top-2/3 -left-32 h-[520px] w-[520px] rounded-full bg-gradient-to-tr from-emerald-400/20 to-teal-500/15 dark:from-emerald-500/12 dark:to-teal-600/12 blur-[120px] filter animate-orb-3" />
+          <div className="absolute bottom-10 right-1/4 h-[460px] w-[460px] rounded-full bg-gradient-to-br from-indigo-500/20 to-sky-400/20 dark:from-indigo-600/15 dark:to-sky-500/15 blur-[120px] filter animate-orb-1" />
         </div>
 
-        {/* Sticky Top Navbar in #F7F2EB */}
+        {/* Sticky Top Glass Navbar */}
         <Navbar
           dark={dark}
           onToggleDark={() => setDark((d) => !d)}
@@ -210,7 +213,7 @@ export default function App() {
             {/* Urgent Renewal Alerts Banner */}
             <UpcomingBanner upcoming={upcoming} />
 
-            {/* Core Summary Metric Cards in Sandstone Cream (#EAE2D6) */}
+            {/* Core Summary Metric Cards in Glass Panels */}
             <KpiCards
               totalMonthly={totalMonthly}
               totalAnnual={totalAnnual}
@@ -218,63 +221,63 @@ export default function App() {
               upcomingCount={upcoming.length}
             />
 
-            {/* Highlights Row in #EAE2D6 */}
+            {/* Highlights Row in Glass Cards */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {/* Largest Expense Highlight */}
-              <div className="rounded-2xl border border-[#DCD5C9] bg-[#EAE2D6] p-5 shadow-sm dark:border-[#2E2D27] dark:bg-[#24231F]">
+              <div className="glass-card-interactive glass-specular p-5 rounded-2xl">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-bold uppercase tracking-wider text-[#4D5047] dark:text-[#A6A89F]">
+                  <p className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                     Biggest Monthly Expense
                   </p>
-                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#8B9A6E]/20 text-[#4E5C37] dark:text-[#D5E0C2]">
-                    <TrendingUp className="h-3.5 w-3.5" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-purple-500/15 text-purple-600 dark:text-purple-300 border border-purple-500/20 backdrop-blur-md">
+                    <TrendingUp className="h-4 w-4" />
                   </div>
                 </div>
                 {topExpense ? (
                   <div className="mt-3 flex items-baseline justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-[#1F211C] dark:text-[#F7F2EB]">
+                      <span className="font-bold text-slate-900 dark:text-slate-50">
                         {topExpense.name}
                       </span>
                       <Badge category={topExpense.category} />
                     </div>
-                    <span className="font-mono text-lg font-extrabold text-[#1F211C] dark:text-[#F7F2EB]">
+                    <span className="font-mono text-lg font-extrabold text-slate-900 dark:text-slate-50">
                       {formatCurrency(topExpense.cost)}
                     </span>
                   </div>
                 ) : (
-                  <p className="mt-3 text-xs text-[#70736A] dark:text-[#8D9087]">No active subscriptions yet</p>
+                  <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">No active subscriptions yet</p>
                 )}
               </div>
 
               {/* Closest Renewal Date */}
-              <div className="rounded-2xl border border-[#DCD5C9] bg-[#EAE2D6] p-5 shadow-sm dark:border-[#2E2D27] dark:bg-[#24231F]">
+              <div className="glass-card-interactive glass-specular p-5 rounded-2xl">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-bold uppercase tracking-wider text-[#4D5047] dark:text-[#A6A89F]">
+                  <p className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                     Next Bill Coming Up
                   </p>
-                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#6E859A]/20 text-[#3D5265] dark:text-[#C5D9EB]">
-                    <Calendar className="h-3.5 w-3.5" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/20 backdrop-blur-md">
+                    <Calendar className="h-4 w-4" />
                   </div>
                 </div>
                 {upcoming.length > 0 ? (
                   <div className="mt-3 flex items-baseline justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-[#1F211C] dark:text-[#F7F2EB]">
+                      <span className="font-bold text-slate-900 dark:text-slate-50">
                         {upcoming[0].name}
                       </span>
-                      <span className="font-mono text-xs font-bold text-[#8B9A6E] dark:text-[#A4B585]">
+                      <span className="font-mono text-xs font-bold text-cyan-600 dark:text-cyan-400">
                         {daysUntil(upcoming[0].nextBilling) === 0
                           ? "Due Today"
                           : `Due in ${daysUntil(upcoming[0].nextBilling)}d`}
                       </span>
                     </div>
-                    <span className="font-mono text-xs text-[#70736A] dark:text-[#8D9087]">
+                    <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
                       {formatDate(upcoming[0].nextBilling)} ({formatCurrency(upcoming[0].cost)})
                     </span>
                   </div>
                 ) : (
-                  <p className="mt-3 text-xs text-[#70736A] dark:text-[#8D9087]">
+                  <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
                     All renewals are scheduled safely beyond 7 days.
                   </p>
                 )}
@@ -304,16 +307,16 @@ export default function App() {
           {/* 4. ABOUT SECTION (#about) */}
           <AboutSection onAddSub={openAdd} />
 
-          {/* Minimalist Footer */}
-          <footer className="border-t border-[#DCD5C9] pt-8 pb-16 text-center text-xs text-[#70736A] dark:border-[#2E2D27] dark:text-[#8D9087]">
+          {/* Minimalist Glass Footer */}
+          <footer className="border-t border-white/60 dark:border-white/10 pt-8 pb-16 text-center text-xs text-slate-500 dark:text-slate-400">
             <div className="flex items-center justify-center gap-2 mb-2">
               <SubZeroLogo className="h-5 w-5" />
-              <span className="font-extrabold text-[#1F211C] dark:text-[#F7F2EB]">SubZero</span>
-              <span>— Effortless Subscription Ledger</span>
+              <span className="font-extrabold text-slate-900 dark:text-slate-100">SubZero</span>
+              <span>— Crystal Glass Subscription Ledger</span>
             </div>
             <p>
               {user ? (
-                <>Signed in as <strong className="text-[#1F211C] dark:text-[#F7F2EB]">{user.user_metadata?.full_name || user.email}</strong> • Cloud Synchronized</>
+                <>Signed in as <strong className="text-slate-900 dark:text-slate-100">{user.user_metadata?.full_name || user.email}</strong> • Cloud Synchronized</>
               ) : (
                 <>Guest Mode • Data saved securely in your local browser cache</>
               )}

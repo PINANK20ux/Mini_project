@@ -13,11 +13,11 @@ import { formatCurrency } from "../utils/format.js";
 const CustomBarTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="animate-scale-in rounded-xl border border-[#DCD5C9] bg-[#F7F2EB] px-3.5 py-2 shadow-lg backdrop-blur-sm dark:border-[#2E2D27] dark:bg-[#181916]">
-        <p className="text-xs font-semibold text-[#70736A] dark:text-[#8D9087]">
+      <div className="animate-scale-in rounded-xl border border-white/60 dark:border-white/15 bg-white/85 dark:bg-slate-900/85 px-3.5 py-2 shadow-glass backdrop-blur-xl">
+        <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
           {label} Projection
         </p>
-        <p className="mt-0.5 font-mono text-sm font-extrabold text-[#4E5C37] dark:text-[#D5E0C2]">
+        <p className="mt-0.5 font-mono text-sm font-extrabold text-cyan-600 dark:text-cyan-400">
           {formatCurrency(payload[0].value)}
         </p>
       </div>
@@ -28,13 +28,13 @@ const CustomBarTooltip = ({ active, payload, label }) => {
 
 export default function ProjectionChart({ projectionData }) {
   return (
-    <div className="group rounded-2xl border border-[#DCD5C9] bg-[#EAE2D6] p-5 shadow-sm transition-all duration-300 hover:border-[#8B9A6E]/50 hover:shadow-md dark:border-[#2E2D27] dark:bg-[#24231F] dark:hover:border-[#8B9A6E]/50">
+    <div className="glass-panel glass-specular p-5 rounded-2xl">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-sm font-bold tracking-tight text-[#1F211C] dark:text-[#F7F2EB]">
+          <h3 className="text-sm font-bold tracking-tight text-slate-900 dark:text-slate-100">
             Projected Spend, Next 6 Months
           </h3>
-          <p className="mt-0.5 text-xs text-[#70736A] dark:text-[#8D9087]">
+          <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
             Includes monthly charges and upcoming annual renewals
           </p>
         </div>
@@ -44,40 +44,40 @@ export default function ProjectionChart({ projectionData }) {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={projectionData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <defs>
-              <linearGradient id="sageBarGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#8B9A6E" stopOpacity={0.95} />
-                <stop offset="100%" stopColor="#8B9A6E" stopOpacity={0.45} />
+              <linearGradient id="glassBarGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#38bdf8" stopOpacity={0.95} />
+                <stop offset="100%" stopColor="#2563eb" stopOpacity={0.45} />
               </linearGradient>
             </defs>
             <CartesianGrid
               strokeDasharray="3 3"
               vertical={false}
-              stroke="#DCD5C9"
-              className="dark:opacity-20"
+              stroke="currentColor"
+              className="text-slate-300/40 dark:text-slate-700/40"
             />
             <XAxis
               dataKey="month"
               tick={{ fontSize: 12 }}
               tickLine={false}
               axisLine={false}
-              stroke="#70736A"
+              stroke="#64748b"
               className="font-semibold"
             />
             <YAxis
               tick={{ fontSize: 11 }}
               tickLine={false}
               axisLine={false}
-              stroke="#70736A"
+              stroke="#64748b"
               className="font-mono"
               tickFormatter={(v) => `₹${v}`}
             />
             <Tooltip
               content={<CustomBarTooltip />}
-              cursor={{ fill: "rgba(139, 154, 110, 0.08)", radius: 6 }}
+              cursor={{ fill: "rgba(56, 189, 248, 0.08)", radius: 6 }}
             />
             <Bar
               dataKey="amount"
-              fill="url(#sageBarGradient)"
+              fill="url(#glassBarGradient)"
               radius={[6, 6, 2, 2]}
               isAnimationActive={true}
               animationDuration={1000}

@@ -52,7 +52,7 @@ export default function Navbar({
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#DCD5C9] bg-[#F7F2EB]/95 backdrop-blur-md transition-colors duration-300 dark:border-[#2E2D27] dark:bg-[#181916]/95">
+    <header className="sticky top-0 z-40 w-full border-b border-white/60 dark:border-white/10 bg-white/65 dark:bg-[#070A12]/60 backdrop-blur-2xl transition-colors duration-300 shadow-glass-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <a
@@ -63,13 +63,13 @@ export default function Navbar({
           <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
             <SubZeroLogo className="h-8 w-8 drop-shadow-sm" />
           </div>
-          <span className="text-xl font-extrabold tracking-tight text-[#1F211C] dark:text-[#F7F2EB]">
-            Sub<span className="text-[#8B9A6E]">Zero</span>
+          <span className="font-display text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            Sub<span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">Zero</span>
           </span>
         </a>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 rounded-full border border-[#DCD5C9] bg-[#EAE2D6]/80 p-1 shadow-sm backdrop-blur-md dark:border-[#2E2D27] dark:bg-[#24231F]/80">
+        <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/60 dark:border-white/10 bg-white/50 dark:bg-white/[0.05] p-1 shadow-glass-sm backdrop-blur-xl">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -79,8 +79,8 @@ export default function Navbar({
                 onClick={(e) => handleScrollTo(e, link.href)}
                 className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 ${
                   isActive
-                    ? "bg-[#8B9A6E] text-white shadow-sm"
-                    : "text-[#4D5047] hover:text-[#1F211C] hover:bg-[#F7F2EB]/80 dark:text-[#A6A89F] dark:hover:text-white dark:hover:bg-[#181916]/80"
+                    ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/25"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-white/60 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/10"
                 }`}
               >
                 <span>{link.label}</span>
@@ -93,13 +93,13 @@ export default function Navbar({
         <div className="flex items-center gap-2">
           {/* User Account / Sign In */}
           {user ? (
-            <div className="flex items-center gap-1 rounded-xl border border-[#DCD5C9] bg-[#EAE2D6]/80 p-1 shadow-sm dark:border-[#2E2D27] dark:bg-[#24231F]">
+            <div className="flex items-center gap-1 rounded-xl border border-white/60 dark:border-white/10 bg-white/50 dark:bg-white/[0.05] p-1 shadow-sm backdrop-blur-md">
               <button
                 onClick={onOpenProfile}
-                className="group flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold text-[#1F211C] transition-all hover:bg-[#F7F2EB] dark:text-[#F7F2EB] dark:hover:bg-[#181916]"
+                className="group flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 transition-all hover:bg-white/80 dark:text-slate-200 dark:hover:bg-white/10"
                 title="Account settings"
               >
-                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-[#8B9A6E]/20 text-[#4E5C37] dark:text-[#D5E0C2]">
+                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-cyan-500/20 text-cyan-600 dark:text-cyan-300">
                   <User className="h-3 w-3" />
                 </div>
                 <span className="hidden sm:inline max-w-[110px] truncate">
@@ -108,7 +108,7 @@ export default function Navbar({
               </button>
               <button
                 onClick={signOut}
-                className="rounded-lg p-1.5 text-[#70736A] hover:bg-rose-100 hover:text-rose-700 dark:hover:bg-rose-950/40 dark:hover:text-rose-400"
+                className="rounded-lg p-1.5 text-slate-500 hover:bg-rose-500/10 hover:text-rose-600 dark:hover:bg-rose-500/20 dark:hover:text-rose-400 transition-colors"
                 title="Log Out"
                 aria-label="Log Out"
               >
@@ -118,9 +118,9 @@ export default function Navbar({
           ) : (
             <button
               onClick={onOpenAuth}
-              className="hidden sm:flex items-center gap-1.5 rounded-xl border border-[#DCD5C9] bg-[#EAE2D6] px-3.5 py-1.5 text-xs font-semibold text-[#1F211C] shadow-sm transition-all hover:border-[#8B9A6E] hover:text-[#4E5C37] dark:border-[#2E2D27] dark:bg-[#24231F] dark:text-[#F7F2EB]"
+              className="glass-button-secondary hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold"
             >
-              <LogIn className="h-3.5 w-3.5 text-[#8B9A6E]" />
+              <LogIn className="h-3.5 w-3.5 text-cyan-500" />
               <span>Log In</span>
             </button>
           )}
@@ -128,21 +128,21 @@ export default function Navbar({
           {/* Theme Toggle */}
           <button
             onClick={onToggleDark}
-            className="rounded-xl border border-[#DCD5C9] bg-[#EAE2D6] p-2 text-[#1F211C] shadow-sm transition-all hover:bg-[#F7F2EB] dark:border-[#2E2D27] dark:bg-[#24231F] dark:text-[#F7F2EB]"
+            className="glass-button-secondary p-2 rounded-xl text-slate-700 dark:text-slate-200"
             aria-label="Toggle dark mode"
             title={dark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {dark ? (
-              <Sun className="h-4 w-4 text-amber-300" />
+              <Sun className="h-4 w-4 text-amber-300 animate-pulse-glow" />
             ) : (
-              <Moon className="h-4 w-4 text-[#4D5047]" />
+              <Moon className="h-4 w-4 text-slate-600" />
             )}
           </button>
 
           {/* + Add Subscription Button */}
           <button
             onClick={onAdd}
-            className="group flex items-center gap-1.5 rounded-xl bg-[#8B9A6E] px-4 py-2 text-xs font-bold text-white shadow-sm transition-all duration-200 hover:bg-[#78875C] hover:shadow active:scale-95"
+            className="glass-button-primary group flex items-center gap-1.5 px-4 py-2 text-xs"
           >
             <Plus className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-90" />
             <span>+ Add Bill</span>
@@ -151,7 +151,7 @@ export default function Navbar({
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#DCD5C9] bg-[#EAE2D6] text-[#1F211C] shadow-sm dark:border-[#2E2D27] dark:bg-[#24231F] dark:text-[#F7F2EB] md:hidden"
+            className="glass-button-secondary flex h-9 w-9 items-center justify-center md:hidden"
             aria-label="Open navigation menu"
           >
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -161,7 +161,7 @@ export default function Navbar({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-[#DCD5C9] bg-[#F7F2EB] p-4 dark:border-[#2E2D27] dark:bg-[#181916] md:hidden animate-slide-down">
+        <div className="border-t border-white/60 dark:border-white/10 bg-white/80 dark:bg-[#070A12]/80 backdrop-blur-2xl p-4 md:hidden animate-slide-down shadow-xl">
           <nav className="flex flex-col gap-1.5">
             {NAV_LINKS.map((link) => {
               const Icon = link.icon;
@@ -173,8 +173,8 @@ export default function Navbar({
                   onClick={(e) => handleScrollTo(e, link.href)}
                   className={`flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-all ${
                     isActive
-                      ? "bg-[#8B9A6E] text-white"
-                      : "text-[#1F211C] hover:bg-[#EAE2D6] dark:text-[#F7F2EB] dark:hover:bg-[#24231F]"
+                      ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/25"
+                      : "text-slate-700 hover:bg-white/60 dark:text-slate-200 dark:hover:bg-white/10"
                   }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -188,9 +188,9 @@ export default function Navbar({
                   setMobileMenuOpen(false);
                   onOpenAuth();
                 }}
-                className="mt-2 flex items-center justify-center gap-1.5 rounded-xl border border-[#DCD5C9] bg-[#EAE2D6] py-2 text-xs font-semibold text-[#1F211C] shadow-sm dark:border-[#2E2D27] dark:bg-[#24231F] dark:text-[#F7F2EB]"
+                className="glass-button-secondary mt-2 flex items-center justify-center gap-1.5 py-2 text-xs font-semibold"
               >
-                <LogIn className="h-3.5 w-3.5 text-[#8B9A6E]" />
+                <LogIn className="h-3.5 w-3.5 text-cyan-500" />
                 <span>Log In / Create Account</span>
               </button>
             )}
