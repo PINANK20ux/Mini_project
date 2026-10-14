@@ -45,8 +45,8 @@ export default function ProjectionChart({ projectionData }) {
           <BarChart data={projectionData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <defs>
               <linearGradient id="glassBarGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#38bdf8" stopOpacity={0.95} />
-                <stop offset="100%" stopColor="#2563eb" stopOpacity={0.45} />
+                <stop offset="0%" stopColor="#2D7495" stopOpacity={0.95} />
+                <stop offset="100%" stopColor="#E8E085" stopOpacity={0.7} />
               </linearGradient>
             </defs>
             <CartesianGrid
@@ -73,7 +73,7 @@ export default function ProjectionChart({ projectionData }) {
             />
             <Tooltip
               content={<CustomBarTooltip />}
-              cursor={{ fill: "rgba(56, 189, 248, 0.08)", radius: 6 }}
+              cursor={{ fill: "rgba(45, 116, 149, 0.12)", radius: 6 }}
             />
             <Bar
               dataKey="amount"

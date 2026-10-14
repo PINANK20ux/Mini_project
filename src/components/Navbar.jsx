@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Sun,
   Moon,
@@ -31,55 +31,88 @@ export default function Navbar({
   onOpenProfile,
   syncing = false,
   isCloudConnected = false,
-  activeSection = "home",
+  activePage = "home",
+  onNavigate,
 }) {
   const { user, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const displayName = user?.user_metadata?.full_name || user?.email?.split("@")[0] || "";
 
-  const handleScrollTo = (e, href) => {
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (e, pageId) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const target = document.querySelector(href);
-    if (target) {
-      const topOffset = target.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({
-        top: topOffset,
-        behavior: "smooth",
-      });
-      window.history.pushState(null, null, href);
+    if (onNavigate) {
+      onNavigate(pageId);
     }
   };
 
+  const isGlassActive = isScrolled || mobileMenuOpen;
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/60 dark:border-white/10 bg-white/65 dark:bg-[#070A12]/60 backdrop-blur-2xl transition-colors duration-300 shadow-glass-sm">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <>
+      <header
+        className={`fixed top-0 inset-x-0 z-50 w-full transition-all duration-300 ease-in-out ${
+          isGlassActive
+            ? "bg-white/45 dark:bg-[#070A12]/55 border-b border-white/50 dark:border-white/10 shadow-glass dark:shadow-glass-dark"
+            : "bg-white/25 dark:bg-[#070A12]/30 border-b border-white/20 dark:border-white/5 shadow-none"
+        }`}
+        style={{
+          backdropFilter: isGlassActive ? "blur(28px) saturate(190%)" : "blur(14px) saturate(160%)",
+          WebkitBackdropFilter: isGlassActive ? "blur(28px) saturate(190%)" : "blur(14px) saturate(160%)",
+        }}
+      >
+        {/* Specular top highlight */}
+        <div
+          className={`absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 dark:via-white/15 to-transparent transition-opacity duration-300 pointer-events-none ${
+            isGlassActive ? "opacity-100" : "opacity-0"
+          }`}
+        />
+
+        {/* Specular bottom border reflection */}
+        <div
+          className={`absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-[#2D7495]/35 dark:via-[#E8E085]/35 to-transparent transition-opacity duration-300 pointer-events-none ${
+            isGlassActive ? "opacity-100" : "opacity-0"
+          }`}
+        />
+
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <a
           href="#home"
-          onClick={(e) => handleScrollTo(e, "#home")}
+          onClick={(e) => handleNavClick(e, "home")}
           className="group flex items-center gap-2.5 cursor-pointer select-none"
         >
           <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
             <SubZeroLogo className="h-8 w-8 drop-shadow-sm" />
           </div>
           <span className="font-display text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Sub<span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">Zero</span>
+            Sub<span className="bg-gradient-to-r from-[#2D7495] via-[#418cae] to-[#E8E085] bg-clip-text text-transparent">Zero</span>
           </span>
         </a>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/60 dark:border-white/10 bg-white/50 dark:bg-white/[0.05] p-1 shadow-glass-sm backdrop-blur-xl">
+        <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/60 dark:border-white/10 bg-white/40 dark:bg-white/[0.04] p-1 shadow-glass-sm">
           {NAV_LINKS.map((link) => {
-            const isActive = activeSection === link.id;
+            const isActive = activePage === link.id;
             return (
               <a
                 key={link.id}
                 href={link.href}
-                onClick={(e) => handleScrollTo(e, link.href)}
+                onClick={(e) => handleNavClick(e, link.id)}
                 className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 ${
                   isActive
-                    ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/25"
+                    ? "bg-gradient-to-r from-[#2D7495] to-[#20556e] text-white shadow-md shadow-[#2D7495]/30"
                     : "text-slate-600 hover:text-slate-900 hover:bg-white/60 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/10"
                 }`}
               >
@@ -93,7 +126,7 @@ export default function Navbar({
         <div className="flex items-center gap-2">
           {/* User Account / Sign In */}
           {user ? (
-            <div className="flex items-center gap-1 rounded-xl border border-white/60 dark:border-white/10 bg-white/50 dark:bg-white/[0.05] p-1 shadow-sm backdrop-blur-md">
+            <div className="flex items-center gap-1 rounded-xl border border-white/60 dark:border-white/10 bg-white/40 dark:bg-white/[0.04] p-1 shadow-sm">
               <button
                 onClick={onOpenProfile}
                 className="group flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 transition-all hover:bg-white/80 dark:text-slate-200 dark:hover:bg-white/10"
@@ -161,19 +194,25 @@ export default function Navbar({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-white/60 dark:border-white/10 bg-white/80 dark:bg-[#070A12]/80 backdrop-blur-2xl p-4 md:hidden animate-slide-down shadow-xl">
+        <div
+          className="border-t border-white/60 dark:border-white/10 bg-white/70 dark:bg-[#070A12]/80 p-4 md:hidden animate-slide-down shadow-xl"
+          style={{
+            backdropFilter: "blur(28px) saturate(190%)",
+            WebkitBackdropFilter: "blur(28px) saturate(190%)",
+          }}
+        >
           <nav className="flex flex-col gap-1.5">
             {NAV_LINKS.map((link) => {
               const Icon = link.icon;
-              const isActive = activeSection === link.id;
+              const isActive = activePage === link.id;
               return (
                 <a
                   key={link.id}
                   href={link.href}
-                  onClick={(e) => handleScrollTo(e, link.href)}
+                  onClick={(e) => handleNavClick(e, link.id)}
                   className={`flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-all ${
                     isActive
-                      ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/25"
+                      ? "bg-gradient-to-r from-[#2D7495] to-[#20556e] text-white shadow-md shadow-[#2D7495]/30"
                       : "text-slate-700 hover:bg-white/60 dark:text-slate-200 dark:hover:bg-white/10"
                   }`}
                 >
@@ -198,5 +237,9 @@ export default function Navbar({
         </div>
       )}
     </header>
-  );
+    {/* Spacer to preserve document layout under fixed navbar */}
+    <div className="h-16 w-full shrink-0" aria-hidden="true" />
+  </>
+);
 }
+

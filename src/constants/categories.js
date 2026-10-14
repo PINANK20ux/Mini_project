@@ -1,9 +1,9 @@
 export const CATEGORIES = {
   Entertainment: {
     badge:
-      "bg-fuchsia-500/10 text-fuchsia-700 border-fuchsia-500/25 dark:bg-fuchsia-500/20 dark:text-fuchsia-300 dark:border-fuchsia-400/30 shadow-[0_0_12px_rgba(217,70,239,0.12)]",
-    dot: "bg-fuchsia-500 shadow-[0_0_6px_rgba(217,70,239,0.8)]",
-    hex: "#d946ef",
+      "bg-[#E8E085]/15 text-[#6c6114] border-[#E8E085]/35 dark:bg-[#E8E085]/20 dark:text-[#f3edca] dark:border-[#E8E085]/35 shadow-[0_0_12px_rgba(232,224,133,0.15)]",
+    dot: "bg-[#E8E085] shadow-[0_0_6px_rgba(232,224,133,0.9)]",
+    hex: "#E8E085",
   },
   Fitness: {
     badge:
@@ -13,21 +13,21 @@ export const CATEGORIES = {
   },
   Utilities: {
     badge:
-      "bg-cyan-500/10 text-cyan-700 border-cyan-500/25 dark:bg-cyan-500/20 dark:text-cyan-300 dark:border-cyan-400/30 shadow-[0_0_12px_rgba(6,182,212,0.12)]",
-    dot: "bg-cyan-500 shadow-[0_0_6px_rgba(6,182,212,0.8)]",
-    hex: "#06b6d4",
+      "bg-[#2D7495]/15 text-[#1e4c63] border-[#2D7495]/30 dark:bg-[#2D7495]/25 dark:text-[#bce0ed] dark:border-[#2D7495]/40 shadow-[0_0_12px_rgba(45,116,149,0.15)]",
+    dot: "bg-[#2D7495] shadow-[0_0_6px_rgba(45,116,149,0.9)]",
+    hex: "#2D7495",
   },
   Housing: {
     badge:
-      "bg-amber-500/10 text-amber-700 border-amber-500/25 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-400/30 shadow-[0_0_12px_rgba(245,158,11,0.12)]",
-    dot: "bg-amber-500 shadow-[0_0_6px_rgba(245,158,11,0.8)]",
-    hex: "#f59e0b",
+      "bg-[#E8E085]/20 text-[#554c15] border-[#E8E085]/40 dark:bg-[#E8E085]/25 dark:text-[#faf9ee] dark:border-[#E8E085]/40 shadow-[0_0_12px_rgba(232,224,133,0.18)]",
+    dot: "bg-[#E8E085] shadow-[0_0_6px_rgba(232,224,133,0.9)]",
+    hex: "#d8ce5d",
   },
   Work: {
     badge:
-      "bg-indigo-500/10 text-indigo-700 border-indigo-500/25 dark:bg-indigo-500/20 dark:text-indigo-300 dark:border-indigo-400/30 shadow-[0_0_12px_rgba(99,102,241,0.12)]",
-    dot: "bg-indigo-500 shadow-[0_0_6px_rgba(99,102,241,0.8)]",
-    hex: "#6366f1",
+      "bg-[#2D7495]/10 text-[#245f7b] border-[#2D7495]/25 dark:bg-[#2D7495]/20 dark:text-[#8eccde] dark:border-[#2D7495]/30 shadow-[0_0_12px_rgba(45,116,149,0.12)]",
+    dot: "bg-[#2D7495] shadow-[0_0_6px_rgba(45,116,149,0.8)]",
+    hex: "#245f7b",
   },
 };
 

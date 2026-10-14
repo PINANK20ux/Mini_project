@@ -11,24 +11,24 @@ export default function SubZeroLogo({ className = "h-10 w-10" }) {
       <defs>
         {/* Diamond Outer Glass Gradient */}
         <linearGradient id="diamondGlassBg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0284c7" stopOpacity="0.85" />
-          <stop offset="50%" stopColor="#0f172a" stopOpacity="0.95" />
-          <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.9" />
+          <stop offset="0%" stopColor="#2D7495" stopOpacity="0.9" />
+          <stop offset="50%" stopColor="#0d2430" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#1b3947" stopOpacity="0.9" />
         </linearGradient>
 
         {/* Specular Rim Stroke */}
         <linearGradient id="diamondRimStroke" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
-          <stop offset="40%" stopColor="#38bdf8" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#818cf8" stopOpacity="0.7" />
+          <stop offset="40%" stopColor="#E8E085" stopOpacity="0.85" />
+          <stop offset="100%" stopColor="#2D7495" stopOpacity="0.8" />
         </linearGradient>
 
         {/* Monogram Ice Flow Gradient */}
         <linearGradient id="monogramFlow" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="35%" stopColor="#bae6fd" />
-          <stop offset="70%" stopColor="#38bdf8" />
-          <stop offset="100%" stopColor="#818cf8" />
+          <stop offset="35%" stopColor="#f3edca" />
+          <stop offset="70%" stopColor="#E8E085" />
+          <stop offset="100%" stopColor="#2D7495" />
         </linearGradient>
 
         <filter id="glassGlow" x="-20%" y="-20%" width="140%" height="140%">
@@ -45,7 +45,7 @@ export default function SubZeroLogo({ className = "h-10 w-10" }) {
         height="58"
         rx="14"
         transform="rotate(45 50 8)"
-        fill="#38bdf8"
+        fill="#2D7495"
         opacity="0.25"
         filter="url(#glassGlow)"
       />
